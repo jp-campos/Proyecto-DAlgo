@@ -11,7 +11,7 @@ public class ProblemaA {
 	public int subArregloAsc (int n, int [ ]numeros)
 	{
 	
-		
+
 		
 		return 0; 
 	}
@@ -44,7 +44,7 @@ public class ProblemaA {
 				line = br.readLine();
 			}
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
 		
