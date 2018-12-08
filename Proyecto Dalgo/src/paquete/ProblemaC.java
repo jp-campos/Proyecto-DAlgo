@@ -13,11 +13,35 @@ public class ProblemaC {
 	{
 		
 		
-		return 0; 
+
+		int a = sensores[0]; 
+		int b = sensores[1];
+		
+		for (int i = 2; i < sensores.length; i+= 2) {
+			
+			int c = sensores[i]; 
+			int d = sensores [i+1]; 
+			
+			
+			if (a > d || b < c) {
+			    
+				continue; 
+			}
+			else {
+				a = Math.max(a, c);
+				b = Math.min(b, d); 
+				
+			}
+		}
+		
+	
+	
+		
+		return (a+b)/2; 
 	}
 	
 	
-	
+
 	
 	
 	
