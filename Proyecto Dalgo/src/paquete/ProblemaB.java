@@ -8,11 +8,11 @@ import java.util.Arrays;
 public class ProblemaB {
 
 
-	public int [][] m; 
+	
 
 	public ArrayList<Integer> construirMatriz(int n, int [] A, int [] B)
 	{
-		m = new int [n][2]; 
+		int [][] m = new int [n][2]; 
 
 
 		int [][] sel = new int [n][2];
@@ -43,36 +43,17 @@ public class ProblemaB {
 
 
 			int b = bi + m[i+1][0]; 
-			int b1 = bi +  m[i+1][1]; 
 		
 			int a = ai + m[i+1][1]; 
-
-			//System.out.println("b1: " + b1 + "    b: " + b );
-//			sel[i][0] = 1 ; 
-//			
-//			if( Math.max(b, b1)== b)
-//			{
-//				sel[i][1] = 0; 
-//			}else if(Math.max(b, b1)== b1)
-//			{
-//				System.out.println("Entra el else");
-//				sel[i][1]=1; 
-//			}
-//			
-
-
 
 			if(i == 0 )
 			{
 				m[i][0] = a;
 				m[i][1] = Math.max(bi  + m[i+1][0], bi  + m[i+1][1]); 
 				
-				
-				
+			
  
 			}else { 
-
-
 				
 				sel[i][0] = Math.max(a, b) ==a ? ai: bi; 
 				sel[i][1] = bi; 
@@ -89,17 +70,17 @@ public class ProblemaB {
 
 		for (int i = 0; i < n; i++) {
 
-			System.out.println(m[i][0] + " " + m[i][1]);
+			//System.out.println(m[i][0] + " " + m[i][1]);
 		                            
 		}
 
-		System.out.println("");
+		//System.out.println("");
 		
 		boolean b = false;  
 		for (int i = 0; i < n; i++) {
 
 			int aAgregar = 0;
-		System.out.println(sel[i][0] + " " + sel[i][1]);
+		//System.out.println(sel[i][0] + " " + sel[i][1]);
 			
 			
 			if(!b)
@@ -126,7 +107,7 @@ public class ProblemaB {
 			selA.add(aAgregar); 
 		}
 
-		System.out.println(selA.toString()); 
+		//System.out.println(selA.toString()); 
 		
 		return selA; 
 
