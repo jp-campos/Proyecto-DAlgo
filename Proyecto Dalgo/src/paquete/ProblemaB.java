@@ -2,6 +2,7 @@ package paquete;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.Arrays;
 
 public class ProblemaB {
@@ -9,22 +10,30 @@ public class ProblemaB {
 
 	public int [][] m; 
 
-	public void construirMatriz(int n, int [] A, int [] B)
+	public ArrayList<Integer> construirMatriz(int n, int [] A, int [] B)
 	{
 		m = new int [n][2]; 
 
 
 		int [][] sel = new int [n][2];
 
+		int bn = B[n-1] > 0 ? B[n-1] : 0 ; 
+		int an = A[n-1] > 0 ? A[n-1] : 0 ;
 
+		m[n-1][0] = Math.max(an, bn); 
+		m[n-1][1] = bn > 0 ? bn : 0 ; 
 
-		m[n-1][0] = Math.max(A[n-1], B[n-1]); 
-		m[n-1][1] = B[n-1] > 0 ? B[n-1] : 0 ; 
-
+		
+		sel[0][0] = A[0]; 
+		sel[0][1] = B[0]; 
+		
 		sel[n-1][0] = Math.max(A[n-1], B[n-1]) == A[n-1] ? A[n-1] : B[n-1]; 
 		sel[n-1][1] = B[n-1] > 0 ? B[n-1] : 0 ;
 
-
+		ArrayList<Integer>selA = new ArrayList<>();  
+		  
+		
+		
 
 		for (int i = n-2; i > -1; i--) {
 
@@ -34,11 +43,22 @@ public class ProblemaB {
 
 
 			int b = bi + m[i+1][0]; 
-
+			int b1 = bi +  m[i+1][1]; 
+		
 			int a = ai + m[i+1][1]; 
 
-
-			sel[i][0] = a>b? ai: bi ; 
+			//System.out.println("b1: " + b1 + "    b: " + b );
+//			sel[i][0] = 1 ; 
+//			
+//			if( Math.max(b, b1)== b)
+//			{
+//				sel[i][1] = 0; 
+//			}else if(Math.max(b, b1)== b1)
+//			{
+//				System.out.println("Entra el else");
+//				sel[i][1]=1; 
+//			}
+//			
 
 
 
@@ -46,28 +66,23 @@ public class ProblemaB {
 			{
 				m[i][0] = a;
 				m[i][1] = Math.max(bi  + m[i+1][0], bi  + m[i+1][1]); 
-						
-						
 				
-					sel[i][0] = ai; 
-					sel[i][1] = bi; 
-					
 				
 				
  
-			}else {
+			}else { 
 
 
+				
+				sel[i][0] = Math.max(a, b) ==a ? ai: bi; 
+				sel[i][1] = bi; 
+				
 				m[i][0] = Math.max(a, b);
 
 				m[i][1] = bi + m[i+1][0]; 
 
-				sel[i][1] = bi; 
+				 
 			}
-
-
-
-
 
 		}
 
@@ -75,30 +90,61 @@ public class ProblemaB {
 		for (int i = 0; i < n; i++) {
 
 			System.out.println(m[i][0] + " " + m[i][1]);
+		                            
 		}
 
+		System.out.println("");
 		
+		boolean b = false;  
+		for (int i = 0; i < n; i++) {
 
+			int aAgregar = 0;
+		System.out.println(sel[i][0] + " " + sel[i][1]);
+			
+			
+			if(!b)
+			{
+				int max=  Math.max(m[i][0], m[i][1]); 
+				
+				if(max == m[i][0])
+				{
+					aAgregar = sel[i][0]; 
+					b = true; 
+				}else
+				{
+					aAgregar = sel[i][1]; 
+				}
+				
+			}else
+			{
+				aAgregar = sel[i][1]; 
+				
+				b=false; 
+				
+			}
+			
+			selA.add(aAgregar); 
+		}
+
+		System.out.println(selA.toString()); 
+		
+		return selA; 
 
 	}
 
 	public int maximoCapital (int n, int inicialCapital, int[] rA, int[] rB)
 	{
-		int max = inicialCapital;
+		int capitalActual = inicialCapital;
 
-		construirMatriz(n, rA, rB);
+		ArrayList<Integer> sel = construirMatriz(n, rA, rB);
 
 
-		//		for (int i = 0; i < n; i++) {
-		//			System.out.println("rA en "+i+" es "+rA[i]);
-		//			System.out.println("rB en "+i+" es "+rB[i]);
-		//			System.out.println("El mayor es "+java.lang.Math.max(rA[i], rB[i]));
-		//			int maxR = java.lang.Math.max(rA[i], rB[i]);
-		//			System.out.println("El maxGanado es "+nuevoCapital(max, maxR));
-		//			max = nuevoCapital(max, maxR);
-		//		}
+				for (int i = 0; i < n; i++) {
+					
+					capitalActual = nuevoCapital(capitalActual, sel.get(i));
+				}
 
-		return max; 
+		return capitalActual; 
 	}
 
 	public static int nuevoCapital(int capitalInvertido, int bolsaValor) {

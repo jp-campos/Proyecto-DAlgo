@@ -42,7 +42,7 @@ public class ProblemaC {
 	
 	
 
-	
+		
 	
 	
 	public static void main(String[] args) {
