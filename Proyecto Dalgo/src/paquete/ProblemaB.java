@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Iterator;
 
 public class ProblemaB {
 
@@ -149,6 +150,9 @@ public class ProblemaB {
 				) { 
 			String line = br.readLine();
 
+			
+			ArrayList<Integer> r = new ArrayList<>(); 
+			
 			while(line!=null && line.length()>0 && !"0 0".equals(line)) {
 
 
@@ -168,8 +172,14 @@ public class ProblemaB {
 				//				System.out.println(Arrays.toString(rB));
 
 				line = br.readLine();
-				System.out.println(instancia.maximoCapital(n,capitalInicial, rA,rB));
+				r.add(instancia.maximoCapital(n,capitalInicial, rA,rB));
 			}
+			
+			for (Integer integer : r) {
+				
+				System.out.println(integer);
+			}
+			
 		} catch (IOException e) {
 
 			e.printStackTrace();
