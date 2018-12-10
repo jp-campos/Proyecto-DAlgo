@@ -5,6 +5,12 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Arrays;
 
+/**
+ * @author Juan Pablo Campos
+ * @author Santiago Beltrán
+ *
+ */
+
 public class ProblemaA {
 
 	public boolean cumpleCondicion(int[] numeros, int apuntadorI, int apuntadorF) {

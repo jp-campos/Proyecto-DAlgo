@@ -6,6 +6,14 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
 
+
+/**
+ * 
+ * @author Juan Pablo Campos
+ * @author Santiago Beltrán
+ *
+ */
+
 public class ProblemaB {
 
 
@@ -67,22 +75,11 @@ public class ProblemaB {
 			}
 
 		}
-
-
-		for (int i = 0; i < n; i++) {
-
-			//System.out.println(m[i][0] + " " + m[i][1]);
-		                            
-		}
-
-		//System.out.println("");
-		
 		boolean b = false;  
 		for (int i = 0; i < n; i++) {
 
 			int aAgregar = 0;
 		//System.out.println(sel[i][0] + " " + sel[i][1]);
-			
 			
 			if(!b)
 			{
@@ -108,12 +105,13 @@ public class ProblemaB {
 			selA.add(aAgregar); 
 		}
 
-		//System.out.println(selA.toString()); 
-		
+
 		return selA; 
 
 	}
 
+
+		
 	public int maximoCapital (int n, int inicialCapital, int[] rA, int[] rB)
 	{
 		int capitalActual = inicialCapital;
@@ -128,6 +126,7 @@ public class ProblemaB {
 
 		return capitalActual; 
 	}
+	
 
 	public static int nuevoCapital(int capitalInvertido, int bolsaValor) {
 

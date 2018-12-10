@@ -5,14 +5,18 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Arrays;
 
+/**
+ * @author Juan Pablo Campos
+ * @author Santiago Beltrán
+ *
+ */
+
 public class ProblemaC {
 
 	
 	
 	public int voe(int n, int[] sensores)
 	{
-		
-		
 
 		int a = sensores[0]; 
 		int b = sensores[1];
@@ -33,10 +37,7 @@ public class ProblemaC {
 				
 			}
 		}
-		
-	
-	
-		
+
 		return (a+b)/2; 
 	}
 	
