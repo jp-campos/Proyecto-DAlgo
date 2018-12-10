@@ -17,7 +17,7 @@ import java.util.Iterator;
 public class ProblemaB {
 
 
-	
+
 
 	public ArrayList<Integer> construirMatriz(int n, int [] A, int [] B)
 	{
@@ -30,19 +30,19 @@ public class ProblemaB {
 		int an = A[n-1] > 0 ? A[n-1] : 0 ;
 
 		m[n-1][0] = Math.max(an, bn); 
-		m[n-1][1] = bn > 0 ? bn : 0 ; 
+		m[n-1][1] = bn ; 
 
-		
-		sel[0][0] = A[0]; 
-		sel[0][1] = B[0]; 
-		
+
+		sel[0][0] = A[0] >0 ? A[0]: 0 ; 
+		sel[0][1] = B[0]> 0 ? B[0]:0; 
+
 		sel[n-1][0] = Math.max(A[n-1], B[n-1]) == A[n-1] ? A[n-1] : B[n-1]; 
 		sel[n-1][1] = B[n-1] > 0 ? B[n-1] : 0 ;
 
 		ArrayList<Integer>selA = new ArrayList<>();  
-		  
-		
-		
+
+
+
 
 		for (int i = n-2; i > -1; i--) {
 
@@ -52,26 +52,28 @@ public class ProblemaB {
 
 
 			int b = bi + m[i+1][0]; 
-		
+
 			int a = ai + m[i+1][1]; 
 
 			if(i == 0 )
 			{
 				m[i][0] = a;
 				m[i][1] = Math.max(bi  + m[i+1][0], bi  + m[i+1][1]); 
-				
-			
- 
+
+
+
 			}else { 
+
+				
 				
 				sel[i][0] = Math.max(a, b) ==a ? ai: bi; 
 				sel[i][1] = bi; 
-				
+
 				m[i][0] = Math.max(a, b);
 
 				m[i][1] = bi + m[i+1][0]; 
 
-				 
+
 			}
 
 		}
@@ -79,12 +81,12 @@ public class ProblemaB {
 		for (int i = 0; i < n; i++) {
 
 			int aAgregar = 0;
-		//System.out.println(sel[i][0] + " " + sel[i][1]);
-			
+			//System.out.println(sel[i][0] + " " + sel[i][1]);
+
 			if(!b)
 			{
 				int max=  Math.max(m[i][0], m[i][1]); 
-				
+
 				if(max == m[i][0])
 				{
 					aAgregar = sel[i][0]; 
@@ -93,25 +95,25 @@ public class ProblemaB {
 				{
 					aAgregar = sel[i][1]; 
 				}
-				
+
 			}else
 			{
 				aAgregar = sel[i][1]; 
-				
+
 				b=false; 
-				
+
 			}
-			
+
 			selA.add(aAgregar); 
 		}
 
-
+		System.out.println(selA.toString());
 		return selA; 
 
 	}
 
 
-		
+
 	public int maximoCapital (int n, int inicialCapital, int[] rA, int[] rB)
 	{
 		int capitalActual = inicialCapital;
@@ -119,14 +121,14 @@ public class ProblemaB {
 		ArrayList<Integer> sel = construirMatriz(n, rA, rB);
 
 
-				for (int i = 0; i < n; i++) {
-					
-					capitalActual = nuevoCapital(capitalActual, sel.get(i));
-				}
+		for (int i = 0; i < n; i++) {
+
+			capitalActual = nuevoCapital(capitalActual, sel.get(i));
+		}
 
 		return capitalActual; 
 	}
-	
+
 
 	public static int nuevoCapital(int capitalInvertido, int bolsaValor) {
 
@@ -149,9 +151,9 @@ public class ProblemaB {
 				) { 
 			String line = br.readLine();
 
-			
+
 			ArrayList<Integer> r = new ArrayList<>(); 
-			
+
 			while(line!=null && line.length()>0 && !"0 0".equals(line)) {
 
 
@@ -173,12 +175,12 @@ public class ProblemaB {
 				line = br.readLine();
 				r.add(instancia.maximoCapital(n,capitalInicial, rA,rB));
 			}
-			
+
 			for (Integer integer : r) {
-				
+
 				System.out.println(integer);
 			}
-			
+
 		} catch (IOException e) {
 
 			e.printStackTrace();
